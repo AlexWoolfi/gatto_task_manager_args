@@ -7,14 +7,14 @@ public class ListWithUsers implements Serializable {
     public static List<User> users = new ArrayList<>();
 
     public static void writeListUser(User user) throws FileNotFoundException {
-        if (!isFileEmpty(PathConstant.pathListFileAllUsers)) {
+        if (isFileEmpty(PathConstant.pathListFileAllUsers)) {
             try (ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(PathConstant.pathListFileAllUsers))) {
                 obj.writeObject(user);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-        if (isFileEmpty(PathConstant.pathListFileAllUsers)) {
+        if (!isFileEmpty(PathConstant.pathListFileAllUsers)) {
           try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(PathConstant.pathListFileAllUsers));
               ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(PathConstant.pathListFileAllUsers))) {
 
