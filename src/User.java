@@ -5,16 +5,9 @@ import java.util.List;
 import java.util.Set;
 
 public class User implements Serializable {
-    public static List<Set<User>> users = new ArrayList<>();
-    public static Set<User> unicUsers = new HashSet<>();
-    private List<Task> tasks;
-    public static File pathListFileAllUsers = new File("C:\\Users\\Admin\\Desktop\\Users.txt") ;
-    public static File pathSETFileAllUsers = new File("C:\\Users\\Admin\\Desktop\\UsersSET.txt");
-    private String userName;
+    private List<Task> tasks;private String userName;
     private String name;
     private String lastName;
-    public static boolean appendUser = pathListFileAllUsers.exists();
-    public static boolean appendSetUsers = pathSETFileAllUsers.exists();
 
 
     public User(String UserName, String name, String lastName) {
@@ -32,43 +25,16 @@ public class User implements Serializable {
         user.setLastName(Patterns.cleanWorldArgs(args[2]));
         user.setUserName(Patterns.cleanWorldArgs(args[3]));
 
-        unicUsers.add(user);
-        users.add(unicUsers);
-
-        writeOBJUser(user);
+        ListWithUsers.writeListUser(user);
 
 
     }
-
-    public static void writeOBJUser(User user) throws IOException {
-         try(ObjectOutputStream obj = AppendingObjectOutputStream.createStream(pathListFileAllUsers)){
-              obj.writeObject(user);
-         }
-    }
-
-//    public static void writeSetUsers(Set<User> unicUsers) {
-//        try(ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(pathSETFileAllUsers))){
-//            obj.writeObject(unicUsers);
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-
-
-
-
 
     public static void showAllUsers() throws IOException {
-        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(pathListFileAllUsers))){
-            try {
-                unicUsers = (Set<User>) in.readObject();
-                for(User i:unicUsers){
-                    System.out.println(i);
-                }
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
+        for(User s:ListWithUsers.users) {
+            System.out.println(s);
         }
+
     }
     public static void addTask(){}
     public static void showTasks(){}

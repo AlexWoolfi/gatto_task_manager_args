@@ -9,8 +9,8 @@ public class FiltrArgs {
             switch (s){
                 case "createUser":
                     User.createUser(args);
-                    System.out.println(User.users);
-//                    System.out.println(User.unicUsers);
+                    System.out.println(ListWithUsers.users);
+
                     break;
                 case "showAllUsers":
                     User.showAllUsers();
