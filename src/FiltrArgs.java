@@ -8,12 +8,12 @@ public class FiltrArgs {
         }
             switch (s){
                 case "createUser":
-                    User.createUser(args);
-                    System.out.println(ListWithUsers.users);
+                    ListWithUsers.createUser(args);
+
 
                     break;
                 case "showAllUsers":
-                    User.showAllUsers();
+//                    ListWithUsers.showAllUsers();
                     break;
                 case "addTask":
                     User.addTask();

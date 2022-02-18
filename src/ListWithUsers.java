@@ -4,33 +4,47 @@ import java.util.List;
 
 public class ListWithUsers implements Serializable {
 
-    public static List<User> users = new ArrayList<>();
 
-    public static void writeListUser(User user) throws FileNotFoundException {
-        if (isFileEmpty(PathConstant.pathListFileAllUsers)) {
-            try (ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(PathConstant.pathListFileAllUsers))) {
-                obj.writeObject(user);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+    public static void createUser(String[] args) throws IOException {
+        User user = new User();
+        user.setName(Patterns.cleanWorldArgs(args[1]));
+        user.setLastName(Patterns.cleanWorldArgs(args[2]));
+        user.setUserName(Patterns.cleanWorldArgs(args[3]));
+        addUser(user);
+
+
+    }
+    public static void addUser(User user) throws FileNotFoundException {
+        List<User> users = new ArrayList<>();
+
+        if(PathConstant.pathListFileAllUsers.isFile()) {
+            users = getAllUsers();
+            System.out.println(users);
+         }
+        try(ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(PathConstant.pathListFileAllUsers))){
+               users.add(user);
+               obj.writeObject(users);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        if (!isFileEmpty(PathConstant.pathListFileAllUsers)) {
-          try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(PathConstant.pathListFileAllUsers));
-              ObjectOutputStream obj = new ObjectOutputStream(new FileOutputStream(PathConstant.pathListFileAllUsers))) {
 
-              users = (List<User>) in.readObject();
-              users.add(user);
-              obj.writeObject(users);
-
-          }catch (IOException | ClassNotFoundException e) {
-              e.printStackTrace();
-          }
-        }
     }
 
-    public static boolean isFileEmpty(File file) {
+    public static List<User> getAllUsers() {
+        List<User> users = new ArrayList<>();
+        try(ObjectInputStream in = new ObjectInputStream(new FileInputStream(PathConstant.pathListFileAllUsers))) {
+             List<User> deseriasable = (List<User>) in.readObject();
+             for(User u:deseriasable) {
+                 users.add(u);
+             }
 
-        return file.length() == 0;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return users;
     }
-
 }

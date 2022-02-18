@@ -5,7 +5,8 @@ import java.util.List;
 import java.util.Set;
 
 public class User implements Serializable {
-    private List<Task> tasks;private String userName;
+    private List<Task> tasks;
+    private String userName;
     private String name;
     private String lastName;
 
@@ -14,30 +15,18 @@ public class User implements Serializable {
         this.userName = UserName;
         this.name = name;
         this.lastName = lastName;
-      }
+    }
 
     public User() {
     }
 
-    public static void createUser(String[] args) throws IOException {
-        User user = new User();
-        user.setName(Patterns.cleanWorldArgs(args[1]));
-        user.setLastName(Patterns.cleanWorldArgs(args[2]));
-        user.setUserName(Patterns.cleanWorldArgs(args[3]));
-
-        ListWithUsers.writeListUser(user);
 
 
+    public static void addTask() {
     }
 
-    public static void showAllUsers() throws IOException {
-        for(User s:ListWithUsers.users) {
-            System.out.println(s);
-        }
-
+    public static void showTasks() {
     }
-    public static void addTask(){}
-    public static void showTasks(){}
 
     public List<Task> getTasks() {
         return tasks;
@@ -47,13 +36,6 @@ public class User implements Serializable {
         this.tasks = tasks;
     }
 
-//    public static String getPathListFileAllUsers() {
-//        return pathListFileAllUsers;
-//    }
-//
-//    public static void setPathListFileAllUsers(String pathListFileAllUsers) {
-//        User.pathListFileAllUsers = pathListFileAllUsers;
-//    }
 
     public String UserName() {
         return userName;
