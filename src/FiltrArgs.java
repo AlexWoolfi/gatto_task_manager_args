@@ -1,4 +1,6 @@
 import java.io.IOException;
+import java.util.List;
+import java.util.Set;
 
 public class FiltrArgs {
    static String s = null;
@@ -13,13 +15,14 @@ public class FiltrArgs {
 
                     break;
                 case "showAllUsers":
-//                    ListWithUsers.showAllUsers();
+                    List<User> showAllUsers =  ListWithUsers.getAllShowUsers();
+                    System.out.println(showAllUsers);
                     break;
                 case "addTask":
-                    User.addTask();
+//                    ListWithUsers.addTask();
                     break;
                 case "showTasks":
-                    User.showTasks();
+//                    ListWithUsers.showTasks();
                     break;
                 default:
                     System.out.println("Command not use, try again");

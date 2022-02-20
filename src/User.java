@@ -1,8 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class User implements Serializable {
     private List<Task> tasks;
@@ -21,11 +18,21 @@ public class User implements Serializable {
     }
 
 
-
-    public static void addTask() {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return  userName.equals(user.userName);
     }
 
-    public static void showTasks() {
+    @Override
+    public int hashCode() {
+        return Objects.hash(tasks, userName, name, lastName);
+    }
+
+    public String getUserName() {
+        return userName;
     }
 
     public List<Task> getTasks() {
