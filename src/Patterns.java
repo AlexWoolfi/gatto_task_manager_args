@@ -27,6 +27,21 @@ public class Patterns {
                 s = s.substring(matcher.start()+1, matcher.end()-1);
                 return s;
             }
+
+        }
+        if (s.contains("-tt")) {
+            while (matcher.find()) {
+                s = s.substring(matcher.start()+1, matcher.end()-1);
+                return s;
+            }
+
+        }
+        if (s.contains("-td")) {
+            while (matcher.find()) {
+                s = s.substring(matcher.start()+1, matcher.end()-1);
+                return s;
+            }
+
         }
 
         return s;

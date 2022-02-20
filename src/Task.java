@@ -1,19 +1,41 @@
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Task {
+public class Task implements Serializable {
     public static final String PATH = "C:\\Users\\Admin\\Desktop\\Tasks.txt";
-    private int id;
+
     private String title;
     private String discription;
-    private LocalDateTime created;
 
+    public String getTitle() {
+        return title;
+    }
 
-
-    public Task(int id, String title, String discription, LocalDateTime created) {
-        this.id = id;
+    public void setTitle(String title) {
         this.title = title;
-        this.discription = discription;
-        this.created = LocalDateTime.now();
+    }
 
+    public String getDiscription() {
+        return discription;
+    }
+
+    public void setDiscription(String discription) {
+        this.discription = discription;
+    }
+
+    public Task(String title, String discription) {
+     this.title = title;
+        this.discription = discription;
+}
+
+    public Task() {
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "title='" + title + '\'' +
+                ", discription='" + discription + '\'' +
+                '}';
     }
 }
