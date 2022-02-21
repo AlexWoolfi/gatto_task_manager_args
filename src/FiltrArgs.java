@@ -19,11 +19,10 @@ public class FiltrArgs {
                     System.out.println(showAllUsers);
                     break;
                 case "addTask":
-//                      ListWithTask.foundUser(args);
                     ListWithTask.createTask(args);
                     break;
                 case "showTasks":
-                  ListWithTask.showAllTasksForUserNAme();
+                  ListWithTask.showAllTasksForUserNAme(args);
                     break;
                 default:
                     System.out.println("Command not use, try again");
